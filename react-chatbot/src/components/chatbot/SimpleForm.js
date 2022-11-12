@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
+import Post from './Post';
 
 const theme = {
   background: '#f5f8fb',
@@ -52,6 +53,12 @@ class SimpleForm extends Component {
             {
               id: 'queryuser',
               user: true,
+              trigger: 'post',
+            },
+            {
+              id: 'post',
+              component: <Post />,
+              asMessage: true,
               trigger: 'satisfied-msg',
             },
             {
@@ -74,7 +81,7 @@ class SimpleForm extends Component {
             {
               id: 'no-response',
               message: "Sorry to hear that. Let's try again.",
-              trigger: 'query-user',
+              trigger: 'queryuser',
             },
           ]}
           {...config}
