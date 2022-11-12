@@ -14,6 +14,10 @@ const theme = {
   userFontColor: '#fff',
 };
 
+const config = {
+  headerTitle: 'Virya',
+};
+
 class SimpleForm extends Component {
   render() {
     return (
@@ -22,7 +26,12 @@ class SimpleForm extends Component {
           steps={[
             {
               id: 'intro',
-              message: 'Hello. What is your name?',
+              message: "Hello. I'm Virya, your clean energy assistant.",
+              trigger: 'intro1',
+            },
+            {
+              id: 'intro1',
+              message: 'What is your name?',
               trigger: 'intro-user',
             },
             {
@@ -38,10 +47,10 @@ class SimpleForm extends Component {
             {
               id: 'query',
               message: 'What statistics are we looking for today?',
-              trigger: 'query-user',
+              trigger: 'queryuser',
             },
             {
-              id: 'query-user',
+              id: 'queryuser',
               user: true,
               trigger: 'satisfied-msg',
             },
@@ -68,6 +77,7 @@ class SimpleForm extends Component {
               trigger: 'query-user',
             },
           ]}
+          {...config}
         />
       </ThemeProvider>
     );
