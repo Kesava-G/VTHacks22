@@ -16,7 +16,7 @@ const theme = {
 };
 
 const config = {
-  headerTitle: 'Virya',
+  headerTitle: 'Virya - The Clean Energy Bot',
 };
 
 class SimpleForm extends Component {
@@ -58,7 +58,21 @@ class SimpleForm extends Component {
             {
               id: 'post',
               component: <Post />,
-              asMessage: true,
+              // message: <Post></Post>,
+              asMessage: false,
+              trigger: 'stats',
+            },
+            {
+              id: 'stats',
+              component: (
+                <img
+                  src='https://www.mathworks.com/help/examples/graphics/win64/Create2DLinePlotsExample_01.png'
+                  height={250}
+                  width={250}
+                  alt='Statistics'
+                />
+              ),
+              asMessage: false,
               trigger: 'satisfied-msg',
             },
             {

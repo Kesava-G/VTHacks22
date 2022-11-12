@@ -6,7 +6,6 @@ class Post extends Component {
     super(props);
     const { steps } = this.props;
     const { queryuser } = steps;
-
     this.state = { queryuser };
   }
 
@@ -15,9 +14,10 @@ class Post extends Component {
       queryuser: this.state.queryuser.value,
     };
     axios
-      .post(`/getServerResponse`, userObject)
+      .post(`http://localhost:5000/getServerResponse`, userObject)
       .then((res) => {
         console.log(res.status);
+        console.log(res.data);
       })
       .catch(function(error) {
         console.log(error);
@@ -25,7 +25,8 @@ class Post extends Component {
   }
 
   render() {
-    return <div>Thank you! Your data was submitted successfully!</div>;
+    // return <div>Thank you! Your data was submitted successfully!</div>;
+    return this.state.serverResponse;
   }
 }
 
