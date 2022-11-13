@@ -57,7 +57,7 @@ class SimpleForm extends Component {
             },
             {
               id: 'post',
-              component: <Post />,
+              component: <Post />, // Post component can take queryuser as prop <Post props="queryuser"></Post>
               // message: <Post></Post>,
               asMessage: false,
               trigger: 'stats',
