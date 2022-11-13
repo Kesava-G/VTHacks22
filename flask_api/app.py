@@ -67,7 +67,7 @@ def serverResponse():
         responseData = {'keywords': 6}
         return jsonify(responseData)
     else:
-        responseData = {'keywords': 6}
+        responseData = {'keywords': 3}
         return jsonify(responseData)
 
 if __name__ == '__main__':

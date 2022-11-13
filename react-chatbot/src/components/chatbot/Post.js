@@ -22,6 +22,7 @@ export class Post extends Component {
         console.log(res.data.keywords);
         this.response = res.data.keywords;
         dataJSON.response = res.data.keywords;
+        window.r = res.data.keywords;
       })
       .catch(function(error) {
         console.log(error);

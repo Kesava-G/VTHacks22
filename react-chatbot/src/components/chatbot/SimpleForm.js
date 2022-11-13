@@ -31,11 +31,7 @@ const theme = {
   userFontColor: '#fff',
 };
 
-function updateResponse() {
-  return dataJSON.response;
-}
-
-const r = updateResponse();
+const r = window.r;
 console.log(r);
 
 const config = {
@@ -163,8 +159,8 @@ class SimpleForm extends Component {
                   src={imgData[dataJSON.response]}
                   id='myimg'
                   height={250}
-                  width={350}
-                  alt={r}
+                  width={375}
+                  alt='Estimated carbon emissions for laptop parts'
                 />
               ),
               trigger: 'satisfied-msg',
