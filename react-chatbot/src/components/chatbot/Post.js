@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, Component } from 'react';
 import axios from 'axios';
 
 class Post extends Component {
@@ -29,5 +29,6 @@ class Post extends Component {
     return this.state.serverResponse;
   }
 }
+
 
 export default Post;

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
 import Post from './Post';
+import { storage } from '..../firebaseConfig.js';
 
 const theme = {
   background: '#f5f8fb',
@@ -20,6 +21,32 @@ const config = {
 };
 
 class SimpleForm extends Component {
+  state = {
+    serverResponse: [],
+    files: [],
+  };
+
+  getImageData() {
+    const fetchImages = async () => {
+      let result = await storage
+        .ref()
+        .child('data')
+        .listAll();
+      let urlPromises = result.items.map((imageRef) =>
+        imageRef.getDownloadURL()
+      );
+
+      return Promise.all(urlPromises);
+    };
+
+    const loadImages = async () => {
+      const urls = await fetchImages();
+      this.state.files = urls;
+    };
+    loadImages();
+    return this.state.files.length;
+  }
+
   render() {
     return (
       <ThemeProvider theme={theme}>
@@ -64,15 +91,16 @@ class SimpleForm extends Component {
             },
             {
               id: 'stats',
-              component: (
-                <img
-                  src='https://d6s000001nrjquag-dev-ed.develop.file.force.com/servlet/servlet.ImageServer?id=0156S00000JF0iZ&oid=00D6S000001NRjq&lastMod=1668295726000'
-                  height={250}
-                  width={500}
-                  alt='Statistics'
-                />
-              ),
-              asMessage: false,
+              message: this.getImageData(),
+              // component: (
+              //   <img
+              //     src='https://d6s000001nrjquag-dev-ed.develop.file.force.com/servlet/servlet.ImageServer?id=0156S00000JF0iZ&oid=00D6S000001NRjq&lastMod=1668295726000'
+              //     height={250}
+              //     width={500}
+              //     alt='Statistics'
+              //   />
+              // ),
+              // asMessage: false,
               trigger: 'satisfied-msg',
             },
             {

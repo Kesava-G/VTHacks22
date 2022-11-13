@@ -7,12 +7,12 @@ import { getAuth } from 'firebase/auth';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyDQOgoaVtDKFr46OzMEM_AkwfP1LpFuHkU',
-  authDomain: 'virya-e55ef.firebaseapp.com',
-  projectId: 'virya-e55ef',
-  storageBucket: 'virya-e55ef.appspot.com',
-  messagingSenderId: '115885637528',
-  appId: '1:115885637528:web:0a4c6091b4b92c0732f5ed',
+  apiKey: process.env.API_KEY,
+  authDomain: process.env.AUTH_DOMAIN,
+  projectId: process.env.PROJECT_ID,
+  storageBucket: process.env.STORAGE_BUCKET,
+  messagingSenderId: process.env.MESSAGING_SENDER_ID,
+  appId: process.env.APP_ID,
 };
 
 // Initialize Firebase
