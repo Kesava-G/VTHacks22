@@ -66,9 +66,9 @@ class SimpleForm extends Component {
               id: 'stats',
               component: (
                 <img
-                  src='https://www.mathworks.com/help/examples/graphics/win64/Create2DLinePlotsExample_01.png'
+                  src='https://d6s000001nrjquag-dev-ed.develop.file.force.com/servlet/servlet.ImageServer?id=0156S00000JF0iZ&oid=00D6S000001NRjq&lastMod=1668295726000'
                   height={250}
-                  width={250}
+                  width={500}
                   alt='Statistics'
                 />
               ),
