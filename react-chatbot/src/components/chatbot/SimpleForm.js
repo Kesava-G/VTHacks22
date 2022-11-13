@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
-import Post from './Post';
-import { storage } from '../../firebaseConfig';
-import { ref, listAll, getDownloadURL } from 'firebase/storage';
+import { Post, responseNo } from './Post';
 
-// const storage = getStorage();
-const storageRef = ref(storage, 'data');
+import imgData from './Images';
+import tips from './Tips';
+import facts from './Facts';
 
-const pathReference = ref(storage, 'data/instagram_features.png');
+// import { storage } from '../../firebaseConfig';
+// import { ref, listAll, getDownloadURL } from 'firebase/storage';
+
+// // const storage = getStorage();
+// const storageRef = ref(storage, 'data');
+
+// const pathReference = ref(storage, 'data/instagram_features.png');
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
 
 const theme = {
   background: '#f5f8fb',
@@ -24,6 +33,7 @@ const theme = {
 
 const config = {
   headerTitle: 'Virya - The Clean Energy Bot',
+  height: '100%',
 };
 
 class SimpleForm extends Component {
@@ -97,8 +107,38 @@ class SimpleForm extends Component {
             {
               id: 'reply',
               message: 'Nice to meet you, {previousValue}!',
-              trigger: 'query',
+              trigger: 'req_type',
             },
+            //
+            {
+              id: 'req_type',
+              message: 'How would you like me to help you?',
+              trigger: 'req',
+            },
+            {
+              id: 'req',
+              options: [
+                { value: 'a', label: 'Analytics', trigger: 'a-response' },
+                { value: 't', label: 'Tips', trigger: 't-response' },
+                { value: 'f', label: 'Facts', trigger: 'f-response' },
+              ],
+            },
+            {
+              id: 'a-response',
+              message: 'What statistics are we looking for today?',
+              trigger: 'queryuser',
+            },
+            {
+              id: 't-response',
+              message: tips[getRandomInt(5)],
+              trigger: 'satisfied-msg',
+            },
+            {
+              id: 'f-response',
+              message: facts[getRandomInt(5)],
+              trigger: 'satisfied-msg',
+            },
+            //
             {
               id: 'query',
               message: 'What statistics are we looking for today?',
@@ -111,8 +151,7 @@ class SimpleForm extends Component {
             },
             {
               id: 'post',
-              component: <Post />, // Post component can take queryuser as prop <Post props="queryuser"></Post>
-              // message: <Post></Post>,
+              component: <Post />,
               asMessage: false,
               trigger: 'img',
             },
@@ -120,14 +159,13 @@ class SimpleForm extends Component {
               id: 'img',
               component: (
                 <img
-                  src='../../data/Air Pollution in London Over the Past 250 Years.png'
+                  src={imgData[responseNo]}
                   id='myimg'
                   height={250}
-                  width={500}
+                  width={350}
                   alt='img'
                 />
               ),
-              asMessage: false,
               trigger: 'satisfied-msg',
             },
             // {
@@ -155,7 +193,7 @@ class SimpleForm extends Component {
             {
               id: 'no-response',
               message: "Sorry to hear that. Let's try again.",
-              trigger: 'queryuser',
+              trigger: 'req',
             },
           ]}
           {...config}
