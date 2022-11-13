@@ -43,9 +43,31 @@ def serverResponse():
 
     print(keyphrases)
 
-    responseData = {'keywords': list(keyphrases)}
+    classify = []
+    for key in keyphrases:
+        classify.append(key.split())
 
-    return jsonify(responseData)
+    classify = classify[0]
+    print(classify)
+
+    if ('air' in classify or 'pollution' in classify or 'london' in classify):
+        responseData = {'keywords': 0}
+        return jsonify(responseData)
+    elif ('world' in classify):
+        responseData = {'keywords': 1}
+        return jsonify(responseData)
+    elif ('shipping' in classify):
+        responseData = {'keywords': 3}
+        return jsonify(responseData)
+    elif ('social' in classify):
+        responseData = {'keywords': 5}
+        return jsonify(responseData)
+    elif ('airport' in classify):
+        responseData = {'keywords': 6}
+        return jsonify(responseData)
+    else:
+        responseData = {'keywords': 6}
+        return jsonify(responseData)
 
 if __name__ == '__main__':
     app.run(debug=True)
