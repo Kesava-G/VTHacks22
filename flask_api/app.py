@@ -47,7 +47,8 @@ def serverResponse():
     for key in keyphrases:
         classify.append(key.split())
 
-    classify = classify[0]
+    if len(classify) > 0:
+        classify = classify[0]
     print(classify)
 
     if ('air' in classify or 'pollution' in classify or 'london' in classify):

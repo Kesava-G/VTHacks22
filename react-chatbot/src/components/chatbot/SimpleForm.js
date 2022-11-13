@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import ChatBot from 'react-simple-chatbot';
 import { ThemeProvider } from 'styled-components';
-import { Post, responseNo } from './Post';
+import { Post } from './Post';
 
 import imgData from './Images';
 import tips from './Tips';
 import facts from './Facts';
-
+import dataJSON from './data.json';
 // import { storage } from '../../firebaseConfig';
 // import { ref, listAll, getDownloadURL } from 'firebase/storage';
 
@@ -31,6 +31,13 @@ const theme = {
   userFontColor: '#fff',
 };
 
+function updateResponse() {
+  return dataJSON.response;
+}
+
+const r = updateResponse();
+console.log(r);
+
 const config = {
   headerTitle: 'Virya - The Clean Energy Bot',
   height: '100%',
@@ -43,26 +50,20 @@ class SimpleForm extends Component {
   // };
 
   // getImageData() {
-  //   getDownloadURL(ref(storage, 'data/instagram_features.png'))
-  //     .then((url) => {
-  //       // `url` is the download URL for 'images/stars.jpg'
+  //   // `url` is the download URL for 'images/stars.jpg'
 
-  //       // This can be downloaded directly:
-  //       // const xhr = new XMLHttpRequest();
-  //       // xhr.responseType = 'blob';
-  //       // xhr.onload = (event) => {
-  //       //   const blob = xhr.response;
-  //       // };
-  //       // xhr.open('GET', url);
-  //       // xhr.send();
+  //   // This can be downloaded directly:
+  //   // const xhr = new XMLHttpRequest();
+  //   // xhr.responseType = 'blob';
+  //   // xhr.onload = (event) => {
+  //   //   const blob = xhr.response;
+  //   // };
+  //   // xhr.open('GET', url);
+  //   // xhr.send();
 
-  //       // Or inserted into an <img> element
-  //       const img = document.getElementById('myimg');
-  //       img.setAttribute('src', url);
-  //     })
-  //     .catch((error) => {
-  //       // Handle any errors
-  //     });
+  //   // Or inserted into an <img> element
+  //   const img1 = document.getElementById('myimg');
+  //   img1.setAttribute('src', imgData[r]);
   // }
 
   // getImageData() {
@@ -159,11 +160,11 @@ class SimpleForm extends Component {
               id: 'img',
               component: (
                 <img
-                  src={imgData[responseNo]}
+                  src={imgData[dataJSON.response]}
                   id='myimg'
                   height={250}
                   width={350}
-                  alt='img'
+                  alt={r}
                 />
               ),
               trigger: 'satisfied-msg',

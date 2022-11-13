@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import imgData from './Images';
+// import imgData from './Images';
+import dataJSON from './data.json';
 
 export class Post extends Component {
   constructor(props) {
@@ -18,8 +19,9 @@ export class Post extends Component {
       .post(`http://localhost:5000/getServerResponse`, userObject)
       .then((res) => {
         console.log(res.status);
-        console.log(res.data);
+        console.log(res.data.keywords);
         this.response = res.data.keywords;
+        dataJSON.response = res.data.keywords;
       })
       .catch(function(error) {
         console.log(error);
