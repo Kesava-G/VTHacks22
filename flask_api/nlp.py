@@ -29,7 +29,7 @@ model_name = "ml6team/keyphrase-extraction-kbir-inspec"
 extractor = KeyphraseExtractionPipeline(model=model_name)
 
 # Inference
-text = interface.serverResponse()
+text =  .serverResponse()
 
 keyphrases = extractor(text)
 
